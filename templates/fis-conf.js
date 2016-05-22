@@ -31,7 +31,10 @@ fis.match(/.*\.(css|less|scss)$/i, {
     useSprite: maftConf.useSprite,
     useHash: maftConf.useHash,
     spriteRelease: '/img/$1.png',
-    optimizer: maftConf.useOptimize && fis.plugin('clean-css')
+    optimizer: maftConf.useOptimize && fis.plugin('clean-css'),
+    preprocessor: fis.plugin('autoprefixer', {
+        browsers: ['> 0%']
+    })
 });
 
 // 编译less文件
