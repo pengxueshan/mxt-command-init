@@ -1,0 +1,39 @@
+{
+  "name": "mxt-command-init",
+  "version": "1.0.0",
+  "description": "scaffold for maft",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/pengxueshan/mxt-command-init.git"
+  },
+  "keywords": [
+    "mxt",
+    "fis3",
+    "init"
+  ],
+  "author": {
+    "name": "mountain"
+  },
+  "license": "BSD",
+  "bugs": {
+    "url": "https://github.com/pengxueshan/mxt-command-init/issues"
+  },
+  "homepage": "https://github.com/pengxueshan/mxt-command-init",
+  "dependencies": {
+    "bluebird": "2.9.21",
+    "findup": "0.1.5",
+    "prompt": "*"
+  },
+  "maintainers": [
+    {
+      "name": "mountain",
+      "email": "289159468@qq.com"
+    }
+  ],
+  "directories": {},
+  "readme": "ERROR: No README data found!"
+}
