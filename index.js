@@ -13,9 +13,10 @@ exports.register = function (commander) {
     commander
         .action(function (template) {
             var args = [].slice.call(arguments);
+            var tpl = ['pc', 'mobile'];
 
             var settings = {
-                template: args[0] || 'pc'
+                template: tpl.indexOf(args[0]) >= 0 ? args[0] : 'pc'
             };
 
             // 根据 fis-conf.js 确定 root 目录
