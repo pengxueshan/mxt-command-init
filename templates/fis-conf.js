@@ -1,18 +1,18 @@
-fis.set("maft", {
-    useSprite: false, // 是否在开发阶段使用雪碧图合并
+fis.set('mxt', {
+    useSprite: true, // 是否在开发阶段使用雪碧图合并
     useOptimize: false, // 是否压缩css
     useHash: false, // 是否给文件名加上hash值
 });
 
 // project.files 项目源码
 // project.ignore 需要排除的文件
-fis.set('project.files', ['./src/**', './src/**/**'])
-.set('project.ignore', ['node_modules/**', '.idea/**', '.gitignore', '**/_*.scss', '.docs/**', 'editorconfig', 'dist/**', 'publish/**', '.dist/**', '.git/**', '.svn/**', 'gruntfile.js', 'gulpfile.js', 'fis-conf.js']);
+fis.set('project.files', ['/src/**', '/src/**/**'])
+.set('project.ignore', ['node_modules/**', '.idea/**', '.gitignore', '.docs/**', 'editorconfig', 'dist/**', 'publish/**', '.dist/**', '.git/**', '.svn/**', 'gruntfile.js', 'gulpfile.js', 'fis-conf.js']);
 
 // 让资源支持相对路径
 fis.hook('relative');
 
-var maftConf = fis.get("maft");
+var mxtConf = fis.get('mxt');
 
 // 为所有资源配置通用属性
 fis.match('*', {
@@ -22,54 +22,52 @@ fis.match('*', {
 });
 
 // 页面模板不用编译缓存
-fis.match(/.*\.(html|htm|php)$/, {
+fis.match('**.{html,htm,php}', {
     useCache: false,
 });
 
 // 样式文件使用的属性
-fis.match(/.*\.(css|less|scss)$/i, {
-    useSprite: maftConf.useSprite,
-    useHash: maftConf.useHash,
-    spriteRelease: '/img/$1.png',
-    optimizer: maftConf.useOptimize && fis.plugin('clean-css'),
+fis.match('**.{css,less,scss}', {
+    useSprite: mxtConf.useSprite,
+    useHash: mxtConf.useHash,
+    spriteRelease: '/dist/sprite/$1.png',
+    optimizer: mxtConf.useOptimize && fis.plugin('clean-css'),
     preprocessor: fis.plugin('autoprefixer', {
         browsers: ['> 0%']
     })
 });
 
 // 编译less文件
-fis.match(/.*\.less$/i, {
+fis.match('**.less', {
     rExt: '.css',
     parser: fis.plugin('less')
 });
 
 // 编译scss文件
-fis.match(/.*\.scss$/i, {
+fis.match('**.scss', {
    rExt: '.css',
    parser: fis.plugin('node-sass')
 });
 
 // 字体文件处理
-fis.match("./src/font/**", {
-    useHash: maftConf.useHash
+fis.match('/src/font/**', {
+    useHash: mxtConf.useHash
 });
 
 // 图片文件处理
-fis.match("./src/img/**", {
-    useHash: maftConf.useHash
-}).match('./src/img/**.png', {
+fis.match('/src/img/**', {
+    useHash: mxtConf.useHash
+}).match('/src/img/**.png', {
     optimizer: fis.plugin('png-compressor')
 });
 
 // js文件处理
-fis.match('./src/js/**', {
-    useHash: maftConf.useHash
+fis.match('/src/js/**', {
+    useHash: mxtConf.useHash
 });
 
 // 不需要发布的文件
-fis.match(/.*\_.*\.(css|less|scss)$/i, {
-    release: false
-}).match('./src/slice/**', {
+fis.match('**_*.{css,less,scss}', {
     release: false
 });
 
@@ -82,7 +80,7 @@ fis.match('**', {
 });
 
 // 打包阶段执行的任务
-fis.match("::package", {
+fis.match('::package', {
     spriter: fis.plugin('csssprites', {
         htmlUseSprite: true,
         layout: 'matrix',
@@ -94,10 +92,8 @@ fis.match("::package", {
 });
 
 // 生产环境压缩js和css
-fis.media('prod')
-    .match('**.js', {
-        optimizer: fis.plugin('uglify-js')
-    })
-    .match('**.css', {
-        optimizer: fis.plugin('clean-css')
-    });
+fis.media('prod').match('**.js', {
+    optimizer: fis.plugin('uglify-js')
+}).match('**.css', {
+    optimizer: fis.plugin('clean-css')
+});

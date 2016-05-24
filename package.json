@@ -1,6 +1,6 @@
 {
   "name": "mxt-command-init",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "scaffold for maft",
   "main": "index.js",
   "scripts": {
