@@ -4,6 +4,17 @@ fis.set('mxt', {
     useHash: false, // 是否给文件名加上hash值
 });
 
+// webfont 设置
+fis.set('webfont',{
+    src       : '/src/icon',//图标目录
+    dest      : '/dist/font',  //产出字体目录
+    fontname  : 'myfont', //产出字体名称
+    destCss   : '/dist/css',
+    destHtml  : '/dist/html',
+    template  : '/src/icon/templates/template.css',
+    htmlDemoTemplate: '/src/icon/templates/template.html'
+});
+
 // project.files 项目源码
 // project.ignore 需要排除的文件
 fis.set('project.files', ['/src/**', '/src/**/**'])
