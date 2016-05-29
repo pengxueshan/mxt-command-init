@@ -6,14 +6,14 @@ var write = fs.writeFileSync;
 var mkdir = fs.mkdirSync;
 
 exports.name = 'init';
-exports.usage = '<mobile|pc|conf>';
-exports.desc = 'scaffold with specifed template mobile or pc or just update fis-conf.js file. default is mobile';
+exports.usage = '<mobile|pc|react|conf>';
+exports.desc = 'scaffold with specifed template mobile or pc or just update fis-conf.js file. default is pc';
 
 exports.register = function (commander) {
     commander
         .action(function (template) {
             var args = [].slice.call(arguments);
-            var tpl = ['pc', 'mobile'];
+            var tpl = ['pc', 'mobile', 'react'];
 
             var settings = {
                 template: tpl.indexOf(args[0]) >= 0 ? args[0] : 'pc'
@@ -67,10 +67,16 @@ exports.register = function (commander) {
 };
 
 function copyFiles(projectDir, template) {
-    var fisConf = fs.readFileSync(__dirname + '/templates/fis-conf.js', {encoding: 'utf8'});
+    if ('pc' === template || 'mobile' === template) {
+        var fisConf = fs.readFileSync(__dirname + '/templates/fis-conf.js', {encoding: 'utf8'});
 
-    write(projectDir + "/fis-conf.js", fisConf, {encoding: 'utf8'});
-    fis.log.info("generate fis-conf.js OK");
+        write(projectDir + "/fis-conf.js", fisConf, {encoding: 'utf8'});
+        fis.log.info("generate fis-conf.js OK");
+    }
+    
+    if ('react' === template) {
+        fis.util.copy(__dirname + "/templates/react", projectDir, null, null, true);
+    }
 
     if (template !== 'mobile' && template !== 'pc') {
         fis.log.info("just update fis-conf.js file!");

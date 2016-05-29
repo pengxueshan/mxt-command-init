@@ -1,0 +1,56 @@
+html,
+body {
+    height: 100%;
+    overflow: hidden;
+}
+
+body,
+ul,
+li {
+    margin: 0;
+    padding: 0;
+}
+
+ul,
+li {
+    list-style: none;
+}
+
+.wrap {
+    padding: 0 0 0 80px;
+    position: relative;
+    height: 100%;
+}
+
+.tab-panel {
+    background: #369;
+    padding: 10px;
+    color: #fff;
+    a {
+        color: #fff;
+        margin: 0 10px 0 0;
+        &.cur {
+            color: #693;
+        }
+    }
+}
+
+.side-nav {
+    position: fixed;
+    width: 80px;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    background: #369;
+    .side-nav-link {
+        color: #fff;
+        display: block;
+        height: 80px;
+        text-align: center;
+        line-height: 80px;
+        &:hover,
+        &.cur {
+            background: #669;
+        }
+    }
+}
