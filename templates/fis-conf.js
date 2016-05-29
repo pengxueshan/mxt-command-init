@@ -9,10 +9,10 @@ fis.set('webfont',{
     src       : '/src/icon',//图标目录
     dest      : '/dist/font',  //产出字体目录
     fontname  : 'myfont', //产出字体名称
-    destCss   : '/dist/css',
-    destHtml  : '/dist/html',
-    template  : '/src/icon/templates/template.css',
-    htmlDemoTemplate: '/src/icon/templates/template.html'
+    destCss   : '/dist/css', // 产出的css目标文件夹
+    destHtml  : '/dist/html', // 产出的html目标文件夹
+    template  : '/src/icon/templates/template.css', // css模板文件
+    htmlDemoTemplate: '/src/icon/templates/template.html' // html模板文件
 });
 
 // project.files 项目源码
@@ -79,6 +79,10 @@ fis.match('/src/js/**', {
 
 // 不需要发布的文件
 fis.match('**_*.{css,less,scss}', {
+    release: false
+});
+
+fis.match('/src/icon/**', {
     release: false
 });
 
