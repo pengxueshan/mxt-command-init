@@ -41,7 +41,7 @@ fis.match('**.{html,htm,php}', {
 fis.match('**.{css,less,scss}', {
     useSprite: mxtConf.useSprite,
     useHash: mxtConf.useHash,
-    spriteRelease: '/dist/sprite/$1.png',
+    spriteRelease: '/src/sprite/$1.png',
     optimizer: mxtConf.useOptimize && fis.plugin('clean-css'),
     preprocessor: fis.plugin('autoprefixer', {
         browsers: ['> 0%']
